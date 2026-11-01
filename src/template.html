@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chương 4 · The Constraint Data Model — trình chiếu hoạt họa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%;background:#0d0e12;color:#ECECEC;overflow:hidden;font-family:'Source Serif 4','Noto Serif',Georgia,serif}
+  #wrap{position:fixed;inset:0;bottom:44px;display:flex;align-items:center;justify-content:center}
+  #stage{width:100%;height:100%;display:block;cursor:pointer;user-select:none}
+  #hud{position:fixed;left:0;right:0;bottom:0;height:44px;display:flex;align-items:center;gap:14px;padding:0 16px;font-size:15px;color:#8A8F98;background:#0a0b0e;border-top:1px solid #1d2028}
+  #hud b{color:#ECECEC;font-weight:600}
+  #sec{color:#58C4DD}
+  #dots{display:flex;gap:5px;margin-left:6px}
+  #dots i{width:7px;height:7px;border-radius:50%;background:#2c313b;display:block}
+  #dots i.on{background:#F7D96F}
+  #sp{flex:1}
+  #hud button{background:#161820;border:1px solid #2a2e38;color:#ECECEC;border-radius:8px;height:30px;min-width:34px;padding:0 10px;font:inherit;cursor:pointer}
+  #hud button:hover{border-color:#58C4DD}
+  #barw{position:fixed;left:0;right:0;bottom:44px;height:2px;background:#15171d}
+  #bar{height:100%;background:#58C4DD;width:0;transition:width .3s}
+  .keys{font-size:13px;color:#5d636e}
+  @media (max-width:700px){.keys,#ttl{display:none}}
+  #menu{position:fixed;inset:0;bottom:44px;background:rgba(10,11,14,.94);display:none;overflow:auto;padding:40px 6vw}
+  #menu.open{display:block}
+  #menu h2{font-weight:400;margin:0 0 20px;font-size:28px}
+  #menu-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+  #menu-list button{text-align:left;background:#14161c;border:1px solid #23262f;color:#ECECEC;padding:12px 14px;border-radius:10px;font:inherit;font-size:17px;cursor:pointer;display:flex;gap:10px;align-items:baseline}
+  #menu-list button:hover{border-color:#F7D96F}
+  #menu-list span{color:#F7D96F;min-width:22px}
+  #menu-list em{color:#58C4DD;font-style:normal;font-size:14px;min-width:44px}
+</style>
+</head>
+<body>
+<div id="wrap"><svg id="stage" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div id="barw"><div id="bar"></div></div>
+<div id="hud">
+  <button id="bm" title="Mục lục (M)">☰</button>
+  <span id="sec"></span><b id="ttl"></b>
+  <span id="dots"></span>
+  <span id="sp"></span>
+  <span class="keys">→ / Space: tiếp · ←: lùi · R: chạy lại · F: toàn màn hình</span>
+  <span id="num"></span>
+  <button id="br" title="Chạy lại cảnh (R)">↺</button>
+  <button id="bp" title="Lùi (←)">‹</button>
+  <button id="bn" title="Tiếp (→)">›</button>
+  <button id="bf" title="Toàn màn hình (F)">⛶</button>
+</div>
+<div id="menu"><h2>Mục lục các cảnh</h2><div id="menu-list"></div></div>
+<script>
+/*TEXDATA*/
+/*ENGINE*/
+/*PLAYER*/
+/*SCENES*/
+window.__nsteps = () => steps.length;
+</script>
+</body>
+</html>
