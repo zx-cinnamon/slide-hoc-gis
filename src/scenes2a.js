@@ -40,8 +40,7 @@ scene('dnf', '4.2.1', 'Dạng chuẩn: không lượng từ + DNF', s => {
     async () => { await fadeIn(b2, 500); await lag(row, r => write(r, 1100), 350); },
     async () => { await all(create(ay, 600), fadeIn(tY, 700)); await all(create(q1, 900), create(q2, 900)); await all(write(lt1, 500), write(lt2, 500)); },
     async () => { await all(create(ab, 600), fadeIn(tB, 700)); await write(lr, 900); },
-    async () => { await cap('Hệ quả: đa giác phải được {y|chia thành các phần lồi trước khi lưu} (lúc nạp dữ liệu, xem Chương 2 và 5).'); },
-    async () => { await cap('Lưu ý: a·x = b ⇔ a·x ≤ b ∧ a·x ≥ b — về lý thuyết chỉ cần {y|≤}; sách giữ “=” cho dễ đọc.'); }
+    async () => { await cap('Hệ quả: đa giác phải được {y|chia thành các phần lồi trước khi lưu} (làm sẵn lúc nạp dữ liệu).'); }
   ];
 });
 
@@ -109,7 +108,7 @@ scene('ba-truy-van', '4.2.2', 'Ba truy vấn mẫu: ∧ · ∧¬ · ∃', s => {
       await all(fadeOut(probe, 400), fadeOut(pd, 400), fadeOut(pdl, 400));
       await cap('Kết quả: phần Spat nằm “dưới” con đường. Công thức có {y|∃y′} → phải {y|khử lượng từ} rồi đưa về DNF.');
     },
-    async () => { await focus(-1); await all(Q.map(q => anim(q, { opacity: 1 }, 400))); await cap('Hai câu hỏi trọng tâm: {y|closure} (kết quả còn là linear constraint relation?) và {y|computability} (có thuật toán?).'); }
+    async () => { await focus(-1); await all(Q.map(q => anim(q, { opacity: 1 }, 400))); await cap('Hai câu hỏi trọng tâm: {y|closure} (kết quả còn là linear constraint relation?) và {y|computability} (có thuật toán?) — trả lời ở các slide sau.'); }
   ];
 });
 
@@ -129,13 +128,11 @@ scene('khu-luong-tu', '4.2.2', 'Khử lượng từ: ví dụ trên đoạn s₁
   const reg = Pl.poly([[4, 0], [6, 0], [6, 5], [4, 3]], { color: C.green, w: 2.5, fill: C.green, fo: .4 });
   const k1 = s.text('Mọi công thức trong L đều có dạng tương đương {y|không lượng từ}, và có {y|thuật toán} tính ra nó.', { x: 80, y: 700, size: 27 });
   const k2 = s.text('⇒ mọi first-order query tính được ở {b|dạng đóng} (DNF không lượng từ), chi phí {y|đa thức} theo kích thước CSDL.', { x: 80, y: 750, size: 27 });
-  const k3 = s.text('Ghi chú: ¬(a ≤ b) ⇔ a > b — bất đẳng thức chặt, nên Bibliographic Notes viết ngôn ngữ là FO(<, +, 0, 1).', { x: 80, y: 820, size: 23, color: C.dim });
   return [
     async () => { await fadeIn(lab, 400); await write(ttl, 900); await write(L1, 2000); await Pl.create(800); await all(create(s1, 600), write(s1l, 400)); },
     async () => { await fadeIn(sub, 500); await indicate(L1, C.yellow); await write(L2, 1500); await fadeIn(nt, 600); },
     async () => { await write(L3, 1200); await fadeIn(ok, 500); await create(reg, 1200); },
     async () => { await fadeIn(k1, 600, 10); await fadeIn(k2, 600, 10); },
-    async () => { await fadeIn(k3, 600); }
   ];
 });
 
@@ -272,7 +269,7 @@ scene('rut-gon', '4.2.3', 'Simplification: tuple rỗng và ràng buộc thừa'
   const f2b = s.tex(tx`\Rightarrow\ \text{chỉ cần giữ}\ \Yl{x\le 7}`, { x: 860, y: 420, size: 32 });
   const ar = s.arrow(800, 540, 800, 610, { color: C.yellow, w: 4 });
   const sm = s.tex(tx`\textbf{simplification}`, { x: 800, y: 670, anchor: 'c', size: 46, color: C.yellow });
-  const sm2 = s.text('bỏ tuple rỗng · bỏ ràng buộc thừa — độ phức tạp phụ thuộc số biến;\ntrong 2D có kỹ thuật đơn giản và hiệu quả (Chương 5)', { x: 800, y: 740, anchor: 'c', size: 26, color: C.dim });
+  const sm2 = s.text('bỏ tuple rỗng · bỏ ràng buộc thừa — độ phức tạp phụ thuộc số biến;\ntrong 2D có kỹ thuật đơn giản và hiệu quả', { x: 800, y: 740, anchor: 'c', size: 26, color: C.dim });
   return [
     async () => { await fadeIn(lab, 400); await write(ttl, 1000); await fadeIn(c1, 500); await fadeIn(t1, 500); await write(f1, 1200); await write(f1b, 1400); },
     async () => { await fadeIn(c2, 500); await fadeIn(t2, 500); await write(f2, 1000); await write(f2b, 1000); },

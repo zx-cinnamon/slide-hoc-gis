@@ -363,7 +363,7 @@ scene('ba-tang', '4.1.4', 'Ba tầng: abstract · symbolic · physical', s => {
   const d2 = s.arrow(1160, 480, 1160, 350, { color: C.green, w: 4 });
   const d1T = s.text('biểu diễn hữu hạn', { x: 580, y: 425, size: 22, color: C.dim });
   const d2T = s.text('q′(φ) là biểu diễn\nhữu hạn của q(R)', { x: 1180, y: 410, size: 22, color: C.green });
-  const ph = s.text('lưu trữ & thực thi trên đĩa — chương này không bàn (xem Chương 1)', { x: 800, y: 770, anchor: 'c', size: 26, color: C.dim });
+  const ph = s.text('lưu trữ & thực thi trên đĩa — không bàn chi tiết ở đây', { x: 800, y: 770, anchor: 'c', size: 26, color: C.dim });
   const n1 = s.text('người dùng thấy bảng tuple (điểm) — hữu hạn hay vô hạn đều được', { x: 845, y: 335, size: 20, color: C.dim, anchor: 'c' });
   return [
     async () => { await fadeIn(lab, 400); await write(ttl, 1200); await all(create(bands[0], 700), fadeIn(tags[0])); await write(R, 600); await fadeIn(n1, 500); },

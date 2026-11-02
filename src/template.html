@@ -17,6 +17,16 @@
   #dots i{width:7px;height:7px;border-radius:50%;background:#2c313b;display:block}
   #dots i.on{background:#F7D96F}
   #sp{flex:1}
+  #st{font-size:14px;padding:3px 10px;border-radius:20px;white-space:nowrap}
+  #st.run{color:#F7D96F;background:#2a2615;animation:pl 1s infinite}
+  #st.ok{color:#83C167;background:#18241a}
+  #st.end{color:#58C4DD;background:#14222a}
+  #dots i.cur{background:#F7D96F;animation:pl .8s infinite}
+  @keyframes pl{50%{opacity:.35}}
+  #cue{position:fixed;right:26px;bottom:62px;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#83C167;border:2px solid #83C167;opacity:0;transition:opacity .3s;pointer-events:none}
+  #cue.on{opacity:.9;animation:nudge 1.2s ease-in-out infinite}
+  #cue.end{color:#58C4DD;border-color:#58C4DD}
+  @keyframes nudge{50%{transform:translateX(6px)}}
   #hud button{background:#161820;border:1px solid #2a2e38;color:#ECECEC;border-radius:8px;height:30px;min-width:34px;padding:0 10px;font:inherit;cursor:pointer}
   #hud button:hover{border-color:#58C4DD}
   #barw{position:fixed;left:0;right:0;bottom:44px;height:2px;background:#15171d}
@@ -40,6 +50,7 @@
   <button id="bm" title="Mục lục (M)">☰</button>
   <span id="sec"></span><b id="ttl"></b>
   <span id="dots"></span>
+  <span id="st"></span>
   <span id="sp"></span>
   <span class="keys">→ / Space: tiếp · ←: lùi · R: chạy lại · F: toàn màn hình</span>
   <span id="num"></span>
@@ -48,6 +59,7 @@
   <button id="bn" title="Tiếp (→)">›</button>
   <button id="bf" title="Toàn màn hình (F)">⛶</button>
 </div>
+<div id="cue"></div>
 <div id="menu"><h2>Mục lục các cảnh</h2><div id="menu-list"></div></div>
 <script>
 /*TEXDATA*/

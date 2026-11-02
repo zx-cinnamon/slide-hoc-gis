@@ -1,6 +1,6 @@
 import subprocess, sys
 import os
-scenes = os.environ.get('SC','scenes1.js scenes2a.js').split()
+scenes = os.environ.get('SC','scenes1.js scenes2a.js scenes2b.js scenes3.js').split()
 r = subprocess.run([sys.executable, 'texbuild.py', 'tex.json'] + scenes)
 if r.returncode: sys.exit(1)
 t = open('template.html', encoding='utf8').read()

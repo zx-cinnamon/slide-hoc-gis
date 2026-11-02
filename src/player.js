@@ -47,6 +47,11 @@ function ui() {
   document.getElementById('num').textContent = (cur + 1) + ' / ' + SCENES.length;
   const d = document.getElementById('dots'); d.innerHTML = '';
   for (let i = 0; i < steps.length; i++) { const s = document.createElement('i'); if (i < step) s.className = 'on'; d.appendChild(s); }
+  const stt = document.getElementById('st'), cue = document.getElementById('cue');
+  if (busy) { stt.className = 'run'; stt.textContent = '● đang chạy…'; cue.className = ''; }
+  else if (step < steps.length) { stt.className = 'ok'; stt.textContent = '✓ xong · bấm → tiếp'; cue.className = 'on'; cue.textContent = '→'; }
+  else { stt.className = 'end'; stt.textContent = cur < SCENES.length - 1 ? '✓ hết cảnh · → sang cảnh sau' : '✓ hết bài'; cue.className = 'on end'; cue.textContent = cur < SCENES.length - 1 ? '⏭' : '■'; }
+  const dd = d.children; if (busy && step > 0 && dd[step - 1]) dd[step - 1].className = 'cur';
   document.getElementById('bar').style.width = ((cur + (steps.length ? step / steps.length : 1)) / SCENES.length * 100) + '%';
 }
 function buildMenu() {
@@ -79,6 +84,7 @@ document.getElementById('bf').onclick = fullscreen;
 document.getElementById('br').onclick = () => load(cur, 0).then(runStep);
 
 window.addEventListener('load', () => {
+  if (window.ORDER) { const O = window.ORDER, base = SCENES.map(x => x.id); SCENES.sort((a, b) => { const i = O.indexOf(a.id), j = O.indexOf(b.id); return (i < 0 ? 1000 + base.indexOf(a.id) : i) - (j < 0 ? 1000 + base.indexOf(b.id) : j); }); }
   buildMenu();
   const h = location.hash.slice(1); const i = SCENES.findIndex(s => s.id === h);
   load(i >= 0 ? i : 0, 0).then(() => { if (!window.__TEST) runStep(); });

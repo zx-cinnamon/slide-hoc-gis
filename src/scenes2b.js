@@ -65,7 +65,7 @@ scene('inter', '4.3.2', '@point hay @rect: cùng một câu truy vấn', s => {
       await cap('Chỉ đổi {y|@point → @rect}: cú pháp giữ nguyên, vì điểm hay hình chữ nhật đều là {b|tập điểm}.');
     },
     async () => { await fadeOut(tg2, 300); await all(fadeOut(k2, 400), fadeIn(k3, 400)); await fadeIn(tg3, 400); await all(cs.map(c => anim(c, { 'fill-opacity': .05 }, 500))); await all(clips.map(c => create(c, 800))); await cap('select {y|{p}}: gom các điểm thành quan hệ lồng → trả về {y|hình học} của phần giao.'); },
-    async () => { await cap('Chương 3 phải chọn hàm hình học khác nhau cho điểm / hình chữ nhật — ở đây {y|một câu truy vấn} cho cả hai.'); }
+    async () => { await cap('Không cần chọn hàm hình học riêng cho điểm hay hình chữ nhật — {y|một câu truy vấn} dùng cho cả hai.'); }
   ];
 });
 
@@ -224,16 +224,16 @@ scene('truy-van-443', '4.4.3', 'Truy vấn trên field & moving points', s => {
 scene('tong-ket', 'Tổng kết', 'Vòng lặp của cả chương', s => {
   const lab = s.label('Tổng kết · 4.5 Bibliographic Notes');
   const ttl = s.title('Giữ vòng này trong đầu — phần còn lại là chi tiết');
-  const cx = 800, cy = 470, R = 230;
+  const cx = 800, cy = 470, R = 200;
   const N = [['quan hệ {b|vô hạn}', -90], ['công thức {y|hữu hạn} (DNF)', 0], ['tính trên công thức\n∧ · khử ∃ · simplify', 90], ['kết quả {g|cũng là} công thức', 180]];
-  const nodes = N.map(([t, a]) => { const r = a * Math.PI / 180; const x = cx + Math.cos(r) * (R + (a === 0 || a === 180 ? 120 : 0)), y = cy + Math.sin(r) * R; return s.text(t, { x, y: y + (a === 90 ? -8 : 8), anchor: 'c', size: 30 }); });
+  const nodes = N.map(([t, a]) => { const r = a * Math.PI / 180; const x = cx + Math.cos(r) * (R + (a === 0 || a === 180 ? 190 : 0)), y = cy + Math.sin(r) * (R + (a === -90 ? 34 : a === 90 ? 50 : 0)); return s.text(t, { x, y: y + 8, anchor: 'c', size: 30 }); });
   const arcs = [0, 1, 2, 3].map(i => { const a0 = (N[i][1] + 22) * Math.PI / 180, a1 = (N[(i + 1) % 4][1] - 22 + (i === 3 ? 360 : 0)) * Math.PI / 180; const pts = []; for (let k = 0; k <= 30; k++) { const a = lerp(a0, a1, k / 30); pts.push([cx + Math.cos(a) * R, cy + Math.sin(a) * R]); } const g = s.g(); op(g, 0); E('path', { d: ptsD(pts), fill: 'none', stroke: C.dim, 'stroke-width': 3 }, g); const p = pts[30], q = pts[28]; const an = Math.atan2(p[1] - q[1], p[0] - q[0]); E('path', { d: ptsD([p, [p[0] - Math.cos(an - .45) * 16, p[1] - Math.sin(an - .45) * 16], [p[0] - Math.cos(an + .45) * 16, p[1] - Math.sin(an + .45) * 16]], true), fill: C.dim }, g); return g; });
   const dot = s.circle(cx, cy - R, 10, { fill: C.yellow });
   const sql = s.text('người dùng chỉ viết {y|SQL}', { x: cx, y: cy + 10, anchor: 'c', size: 24, color: C.dim });
   const bib = s.text('Nguồn gốc: [KKR90], [KKR95] · tổng hợp [KLP00] · dense linear FO(<, +, 0, 1) → tập {b|semilinear} · dense polynomial FO(<, +, ×, 0, 1) → {p|semialgebraic} · đại số theo [GST94]', { x: 800, y: 830, anchor: 'c', size: 20, color: C.dim });
   return [
     async () => { await fadeIn(lab, 400); await write(ttl, 1000); for (let i = 0; i < 4; i++) { await fadeIn(nodes[i], 500, 10); await create(arcs[i], 600); } await fadeIn(sql, 500); },
-    async () => { op(dot, 1); await tween(4000, k => { const a = (-90 + 360 * k) * Math.PI / 180; dot.setAttribute('cx', cx + Math.cos(a) * R); dot.setAttribute('cy', cy + Math.sin(a) * R); }, linear); },
+    async () => { op(dot, 1); await tween(4000, k => { const a = (-90 + 360 * k) * Math.PI / 180; dot.setAttribute('cx', cx + Math.cos(a) * R); dot.setAttribute('cy', cy + Math.sin(a) * R); }, linear); await fadeOut(dot, 400); },
     async () => { await fadeIn(bib, 700); }
   ];
 });
